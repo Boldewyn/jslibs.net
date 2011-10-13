@@ -1,0 +1,170 @@
+
+                     Package Metadata Format for jslibs.net
+
+
+Abstract:
+
+  This document describes the necessary and optional fields for package
+  metadata on jslibs.net. The fields are inspired by PyPI's handling of this
+  matter as exposed in PEP 345 [1].
+
+
+Fields:
+
+  * Metadata-Version: String("1.0")
+    + required
+    Version of the data format, hardcoded to "1.0".
+
+  * Name: String("project name")
+    + required
+    The name of the project, unique for jslibs.net.
+
+  * Version: String("version number")
+    + required
+    The version of the project.
+
+  * Supported-Browsers: Array(String("browser"))
+    + optional
+    The list of supported browsers. See below for a naming convention. An
+    empty array indicates unknown support, Array(String("any")) support for
+    any browser with JS enabled.
+
+  * Supported-Platform: Array(String("JS engine"))
+    + optional
+    A list of supported Javascript engines.
+
+  * Summary: String("a one-line summary of what the project does")
+    + required
+
+  * Description: String("a longer description of the project")
+    + optional
+
+  * Keywords: Array(String("keyword"))
+    + optional
+    A list of keywords or tags describing the project.
+
+  * Homepage: String("URL")
+    + optional
+    A URL to the project's homepage.
+
+  * Download-URL: Object("type": String("URL"))
+    + required
+    Download URLs for this project. Currently recognized types are:
+    - "main": not further specified download
+    - "mirror": Project mirror, fitting for deep-linking (e.g., Google CDN),
+      single JS file
+    - "dev": un-minified source with comments, single JS file
+    - "min": minified source, single JS file
+    - "project": source, possibly an archive
+
+  * Author: String("name")
+    + optional
+    The name of the project's author(s).
+
+  * Author-Email: String("email address")
+    + optional
+    The email address of the project's author(s). It may be in the "Name
+    <Email>" form specified by RFC 822.
+
+  * Maintainer: String("name")
+    + optional
+    The name of the project's maintainer(s).
+
+  * Maintainer-Email: String("email address")
+    + optional
+    The email address of the project's maintainer(s). It may be in the "Name
+    <Email>" form specified by RFC 822.
+
+  * Licenses: Array(String("license"))
+    + optional
+    A list of licenses the project is published under. We encourage the use of
+    OSI license short names (e.g., "GPL" or "BSD-2-Clause") [3].
+
+  * Requires: Array(String("other projects' name"))
+    + optional
+    A list of other projects required by this one.
+    Example:
+      Name: jQuery-UI
+      Requires: ["jQuery"]
+
+  * Recommends: Array(String("other projects' name"))
+    + optional
+    A list of other projects recommended by this one.
+    Example:
+      Name: backbone.js
+      Recommends: ["jQuery"]
+
+  * Obsoletes: Array(String("other projects' name"))
+    + optional
+    A list of other projects superseded by or incompatible with this project.
+
+  * Project-URL: Object("type": String("URL"))
+    + optional
+    URLs related with this project. Any string can be used as type. Currently
+    recognized types with special meaning are:
+    - "issues": project's bug tracker
+    - "code": project's source code repository
+    - "docs": project's main documentation
+    - "support": project's main support platform, e.g., a mailing list
+
+
+
+Conventions:
+
+  Browsers:
+    The browsers are named according to this convention:
+    <Browser_Name> U+0020 <Browser_Version>. If <Browser_Version> is missing,
+    all current versions of this specific browser are targeted. See the point
+    "Version Numbers" for details.
+    <Browser_Name> either a free string or coercively one of the following, if
+    matched:
+    - "IE": Microsoft Internet Explorer
+    - "IE_mobile": Microsoft Internet Explorer Mobile
+    - "FF": Mozilla Firefox
+    - "FF_mobile": Mozilla Firefox for mobile ("Fennec")
+    - "Opera": Opera browser
+    - "Opera_mini": Opera mini browser
+    - "Opera_mobile": Opera mobile browser
+    - "Chrome": Google Chrome
+    - "Safari": Apple Safari
+    - "Safari_mobile": Apple Safari on iOS
+    - "BlackBerry": BlackBeryy browser
+    - "Konqueror": KDE Konqueror
+    - "Android": Android browser
+    - "Maxthon": Maxthon browser
+    - "Epiphany": GNOME Epiphany
+    - "SeaMonkey": Sea Monkey
+
+  Platforms:
+    The platform (= engine) naming convention follows the one outlined for
+    browsers. Known engine names are:
+    - "Carakan"
+    - "Chakra"
+    - "SpiderMonkey"
+    - "SquirrelFish"
+    - "Nitro"
+    - "Tamarin"
+    - "V8"
+    - "JavaScriptCore"
+    - "Futhark"
+    - "JScript"
+    - "KJS"
+    - "LinearB"
+    - "Narcissus"
+    - "QtScript"
+    - "Rhino"
+
+
+  Version Numbers:
+    The version number comparison follows the approach outlined in PEP345 [1]
+    as applicable. This includes especially browser support comparison.
+
+
+Comments:
+
+  * We should try to install a unique mapping to DOAP [2]
+
+
+[1] http://www.python.org/dev/peps/pep-0345/
+[2] http://trac.usefulinc.com/doap
+[3] http://www.opensource.org/licenses/alphabetical
