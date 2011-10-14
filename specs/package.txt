@@ -47,7 +47,7 @@ Fields:
     + optional
     A URL to the project's homepage.
 
-  * Download-URL: Object("type": String("URL"))
+  * Download-URL: Array(Array(String("type"), String("URL")))
     + required
     Download URLs for this project. Currently recognized types are:
     - "main": not further specified download
@@ -99,7 +99,7 @@ Fields:
     + optional
     A list of other projects superseded by or incompatible with this project.
 
-  * Project-URL: Object("type": String("URL"))
+  * Project-URL: Array(Array(String("type"), String("URL")))
     + optional
     URLs related with this project. Any string can be used as type. Currently
     recognized types with special meaning are:
@@ -107,6 +107,8 @@ Fields:
     - "code": project's source code repository
     - "docs": project's main documentation
     - "support": project's main support platform, e.g., a mailing list
+    - "demo": a demonstration of the project's functionality
+    - "screenshot": a screenshot of the project in action
 
 
 
