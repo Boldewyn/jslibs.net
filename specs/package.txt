@@ -52,10 +52,11 @@ Fields:
     Download URLs for this project. Currently recognized types are:
     - "main": not further specified download
     - "mirror": Project mirror, fitting for deep-linking (e.g., Google CDN),
-      single JS file
-    - "dev": un-minified source with comments, single JS file
-    - "min": minified source, single JS file
-    - "project": source, possibly an archive
+      MUST be a single JS file
+    - "dev": un-minified source with comments, MUST be a single JS file
+    - "min": minified source, MUST be a single JS file
+    - "project": source, MAY be an archive
+    - "beta": unstable beta version, MAY be an archive
 
   * Author: String("name")
     + optional
